@@ -3,7 +3,7 @@
 backend:
   name: github
   branch: master
-  repo: mavaurel/netlifycms_portfolio # change this to your repo
+  repo: mavaurel/netlify-express # change this to your repo
   base_url: http://104.248.3.32/ # change this to your OAuth server
 media_folder: assets/media
 
