@@ -5,15 +5,82 @@ backend:
   branch: master
   repo: mavaurel/netlifycms_portfolio # change this to your repo
   base_url: http://104.248.3.32/ # change this to your OAuth server
-
-media_folder: media_folder
+media_folder: assets/media
 
 collections:
-- name: post
-  label: Post
-  folder: posts
-  create: true
-  fields:
-    - {name: title, label: Title}
-    - {name: body, label: Body, widget: markdown}
-    - {label: "Image", name: "image", widget: "image", tagname: ''}
+  - name: 'posts' # Used in routes, ie.: /admin/collections/:slug/edit
+    editor:
+      preview: false
+    label: 'Posts' # Used in the UI
+    extension: json
+    label_singular: 'Post' # Used in the UI, ie: "New Post"
+    description: >
+      The description is a great place for tone setting, high level information, and editing
+      guidelines that are specific to a collection.
+    folder: 'data/posts'
+    slug: '{{slug}}'
+    summary: '{{title}} -- {{year}}/{{month}}/{{day}}'
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: 'Title', name: 'title', widget: 'string', tagname: 'h1' }
+      - {label: 'Publish Date', name: 'date', widget: 'datetime', dateFormat: 'YYYY-MM-DD', timeFormat: 'HH:mm', format: 'YYYY-MM-DD HH:mm'}
+      - {label: "Status", name: "status", widget: "select", options: ["Draft", "Published", "Private"]}  
+      - {label: "Image", name: "image", widget: "image", tagname: '' }
+      - {label: 'Featured image', name: 'featured-image', widget: 'image', required: false}
+      - {label: 'Body', name: 'body', widget: 'markdown', hint: 'Main content goes here.' }
+      - {label: "Tags", name: "tags", widget: "list", hint: 'comma as a separator'}
+      - {label: " Post Type", name: "post-type",widget: "select",options: ["Page", "Blog Post", "Media", "Markup", "Code Snippet"]}
+      
+    # meta:
+      # - { label: 'SEO Description', name: 'description', widget: 'text'  hint: 'Quick description of the post'  }
+      - {label: 'Excerpt', name: 'Excerpt', widget: 'text', hint: 'Quick description of the post' }
+  - name: 'settings'
+    editor:
+      preview: false
+    label: 'Settings'
+    delete: false # Prevent users from deleting documents in this collection
+    files:
+      - name: 'general'
+        label: 'Site Settings'
+        file: 'data/settings/general.json'
+        description: 'General Site Settings'
+        fields:
+          - { label: 'Global title', name: 'site_title', widget: 'string' }
+          - label: 'Post Settings'
+            name: posts
+            widget: 'object'
+            fields:
+              # - {
+              #     label: 'Number of posts on frontpage',
+              #     name: front_limit,
+              #     widget: number,
+              #     min: 1,
+              #     max: 10,
+              #   }
+              # - { label: 'Default Author', name: author, widget: string }
+              - {
+                  label: 'Default Thumbnail',
+                  name: thumb,
+                  widget: image,
+                  class: 'thumb',
+                  required: false,
+                }
+              - {
+                  label: 'Github URL',
+                  name: 'github-url',
+                  widget: 'image',
+                  hint: 'List of public Github URL'
+                }  
+
+      - name: 'category'
+        label: 'category'
+        file: 'data/settings/category.json'
+        description: 'Author descriptions'
+        fields:
+          - name: category
+            label: category
+            label_singular: 'category'
+            widget: list
+            fields:
+              - { label: 'Name', name: 'name', widget: 'string', hint: 'First and Last' }
+              - { label: 'Description', name: 'description', widget: 'markdown' }      
