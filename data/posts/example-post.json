@@ -1,0 +1,14 @@
+{
+  "Excerpt": "less words",
+  "body": "Some text here [link](https://docs.google.com/spreadsheets/d/1F5dmkBML8rVju4mw9IfhI3KVN6H3dFQ--AO9xherM2c/edit?usp=sharing)",
+  "post-type": "Blog Post",
+  "date": "2019-11-12 01:38",
+  "status": "Draft",
+  "title": "Example post ",
+  "tags": [
+    "something",
+    "example"
+  ],
+  "image": "/assets/media/icon-rhino.png",
+  "featured-image": "/assets/media/icon-rhino.png"
+}
