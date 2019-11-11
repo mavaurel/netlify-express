@@ -1,4 +1,4 @@
-# Prepare dev env
+# Prepare dev env (to use without docker)
 clone repository git clone 'rep adress'
 
 Install nodejs > 10 version
@@ -7,6 +7,7 @@ https://nodejs.org/en/
 Install dev dependancy 
 `npm install`
 
+You can use docker for this stage same as in https://github.com/mavaurel/netlify-oauth/readme.md
 
 # How to use netlifycms on local env
 
